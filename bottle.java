@@ -15,26 +15,32 @@ static final int MIN = 0;
   * an integer. The program will check if the number 
   * isn't less than zero. 
   */
-  public static int inPut(){
-	 int amount = 0; 
-	 System.out.println("Enter two number for the bottle t");
-	 amount = keyboard.nextInt(); 	
-	
-		
-		 if(amount >= MAX) {
+  public static int amountOne;
+public static int amountTwo; 
+ public static int inPut(){
+	 System.out.println("Enter two number for the bottle ");
+	 amountOne = keyboard.nextInt(); 		
+	 
+		 if(amountOne >= MAX) {
 	 		 System.out.println("That amount of pennies cannot fit in the bottle.\nPlease enter a another amount of pennies.");
-	 		 amount = keyboard.nextInt();
+	 		 amountOne = keyboard.nextInt();
 	 	 }
-		 else if (amount < 0 ){
+		 else if (amountOne < MIN ){
 			 System.out.println("Please enter a valid number");
-		 amount = keyboard.nextInt(); 
-		 pennies = amount;
+		 amountOne = keyboard.nextInt(); 
+		 
 		 }
-		 
-		 
-	
-	
-return pennies; 
+		 amountTwo = keyboard.nextInt(); 
+		 if (amountTwo >= MAX) {
+			 System.out.println("That amount of pennies cannot fit in the bottle.\nPlease enter a another amount of pennies.");
+	 		 amountTwo = keyboard.nextInt();
+		 }
+		 else if (amountTwo < MIN) {
+			 System.out.println("Please enter a valid number");
+			 amountTwo = keyboard.nextInt(); 
+			 
+		 }
+return amountOne;
 
  }//End of inPut Method 
  public int add(int bottleOne, int bottleTwo, int bottleThree){
