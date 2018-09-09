@@ -55,3 +55,59 @@ return amountOne;
  //}
 
 }//End class
+
+public static int read() {
+	boolean STOP = true; 
+	while(STOP == true) 
+	{
+	STOP = false; 
+	pennies = keyboard.nextInt(); 
+	if (pennies >= MAX) {
+		STOP = true; 
+		System.out.println("That amount of pennies cannot fit in the bottle.");
+		pennies = keyboard.nextInt();
+	}
+	else if(pennies < MIN) {
+		System.out.println("You cannot put a negative number in the bottle silly" );
+		pennies = keyboard.nextInt(); 
+		
+	}
+
+	}
+	return pennies;
+
+}//read 
+public static  int getFirstNumber(int numberOne) {
+	int i = 1; 
+	if(i == 1) {
+	 numberOne = pennies; 
+	 i= i + 1; 
+	 
+	}
+	System.out.println("One " + numberOne);
+	return  numberOne;
+}
+public static int getSecondNumber(int numberTwo) {
+	boolean STOP = true; 
+	while(STOP == true ) {
+		int i = 1; 
+		if (getNumberOne != getNumberTwo) {
+			STOP = false ;
+			numberTwo = pennies; 
+		}
+	
+	}
+	System.out.println("Two" + numberTwo);
+	return numberTwo; 
+	
+}
+public static  int add(int bottle1, int bottle2, int bottle3 ) {
+	bottle1 = getFirstNumber(bottle1);  
+	bottle2 = getSecondNumber(bottle2);
+	bottle3 = bottle1 + bottle2; 
+	System.out.println(bottle3);
+	return bottle3; 
+
+}
+
+}/
