@@ -7,7 +7,7 @@ import junit.framework.Test;
 public class bottleDemo {
 
 	public static void main(String[] args) throws ReflectiveOperationException  {
-	//bottle bottle1 = new bottle();
+	
 	//bottle bottle2 = new bottle(); 
 
 	
@@ -19,16 +19,16 @@ public class bottleDemo {
 	m.invoke(t);
 	*/ 
 	System.out.println("Enter a number for the bottle ");
-	int bottle1 = bottle.read(); 
+	int bottle1 = bottleSecond.read(); 
 	//System.out.println(bottle1 +  ""+ bottle1);
-	bottle1 = bottle.getFirstNumber(bottle1); 
+	bottle1 = bottleSecond.getFirstNumber(bottle1); 
 	System.out.println("Enter another number for the bottle ");
-	int bottle2= bottle.read(); 
+	int bottle2= bottleSecond.read(); 
 	System.out.println(bottle1);
-	bottle2 = bottle.getSecondNumber(bottle2); 
+	bottle2 = bottleSecond.getSecondNumber(bottle2); 
 	System.out.println(bottle2);
 	int bottle3 = 0; 
-	 bottle3 = bottle.add(bottle1, bottle2, bottle3  );
+	 bottle3 = bottleSecond.add(bottle1, bottle2, bottle3  );
 	System.out.println(bottle3);
 	if(bottle3 > bottle.MAX) {
 		if(bottle1 > bottle2) {
