@@ -3,46 +3,46 @@ mport java.util.Scanner;
 public class Bottle1
 {
 private int cookies;
-Scanner input;
+Scanner keyboard;
 
-final int max = 500;
-final int min = 0;
+final int MAX = 500;
+final int MIN = 0;
 
 public Bottle1()
 {
-    cookies = 0;
+    pennies = 0;
 
-    input = new Scanner(System.in);
+    keyboard = new Scanner(System.in);
 }
 
 public void read()
 {
-    cookies = input.nextInt();
+    cookies = keyboard.nextInt();
 }
 
 public void set(int capacity)
 {
-    cookies = capacity;
+    pennies = capacity;
 }
 
 public void set(Bottle bottle)
 {
-    cookies = bottle.get();
+    pennies = bottle.get();
 }
 
 public int get()
 {
-    return cookies;
+    return pennies;
 }
 
 
 public Bottle add(int value)
 {
     Bottle bottle = new Bottle();
-    if (value + this.cookies <= max)
+    if (value + this.pennies <= MAX)
     {
 
-        bottle.set(this.cookies + value);
+        bottle.set(this.pennies + value);
     }
     else
     {
@@ -56,10 +56,10 @@ public Bottle add(int value)
 public Bottle subtract(int value)
 {
     Bottle bottle = new Bottle();
-    if (this.cookies - value >= min)
+    if (this.pennies - value >= MIN)
     {
 
-        bottle.set(this.cookies - value);
+        bottle.set(this.pennies - value);
     }
     else
     {
@@ -73,11 +73,10 @@ public Bottle subtract(int value)
 public Bottle1 multiply(int value)
 {
     Bottle bottle = new Bottle();
-    if (this.cookies * value >= min
-            || this.cookies * value <= max)
+    if (this.pennies * value <= max)
     {
 
-        bottle.set(this.cookies * value);
+        bottle.set(this.pennies * value);
     }
     else
     {
@@ -92,9 +91,9 @@ public Bottle divide(int value)
 {
     Bottle bottle = new Bottle();
 
-    if (this.cookies > 0 && value > 0)
+    if (this.pennies > 0 && value > 0)
     {
-        bottle.set(this.cookies / value);
+        bottle.set(this.pennies / value);
     }
     else
     {
@@ -108,7 +107,7 @@ public Bottle divide(int value)
 public Bottle add(Bottle bottle)
 {
     Bottle bot = new Bottle();
-    if (bottle.get() + this.cookies <= max)
+    if (bottle.get() + this.pennies <= max)
     {
 
         bot.set(this.cookies + bottle.get());
@@ -125,10 +124,10 @@ public Bottle add(Bottle bottle)
 public Bottle subtract(Bottle bottle)
 {
     Bottle bot = new Bottle();
-    if (bottle.get() - this.cookies >= min)
+    if (bottle.get() - this.pennies >= min)
     {
 
-        bot.set(bottle.get() - this.cookies);
+        bot.set(bottle.get() - this.pennies);
     }
     else
     {
@@ -142,11 +141,11 @@ public Bottle subtract(Bottle bottle)
 public Bottle multiply(Bottle bottle)
 {
     Bottle bot = new Bottle();
-    if (this.cookies * bottle.get() >= min
-            || this.cookies * bottle.get() <= max)
+    if (this.pennies * bottle.get() >= min
+            || this.pennies * bottle.get() <= max)
     {
 
-        bot.set(this.cookies * bottle.get());
+        bot.set(this.pennies * bottle.get());
     }
     else
     {
@@ -162,9 +161,9 @@ public Bottle divide(Bottle bottle)
 {
     Bottle bot = new Bottle();
 
-    if (this.cookies > 0 && bottle.get() > 0)
+    if (this.pennies > 0 && bottle.get() > 0)
     {
-        bot.set(this.cookies / bottle.get());
+        bot.set(this.pennies / bottle.get());
     }
     else
     {
@@ -178,7 +177,7 @@ public Bottle divide(Bottle bottle)
 public boolean equals(Bottle bottle)
 {
 
-    if (this.cookies == bottle.get())
+    if (this.pennies == bottle.get())
         return true;
 
     return false;
@@ -187,6 +186,6 @@ public boolean equals(Bottle bottle)
 
 public String toString()
 {
-    return String.valueOf(this.cookies);
+    return String.valueOf(this.pennies);
 }
 }
