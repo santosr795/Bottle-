@@ -1,21 +1,31 @@
-package bottle;
+	package bottle;
 import java.util.Scanner; 
 import java.util.prefs.*;
 public class bottle {
 private int pennies = 0; 
 static final int MIN = 0;
- static final int  MAX = 500;
+static final int  MAX = 500;
  Scanner keyboard;
 
  
- public bottle()
- {
+ public bottle() {
      pennies = 0;
-
+     //MIN = 0; 
      keyboard = new Scanner(System.in);
  }
-
- public void read() {  
+ /*
+ public bottle MAX() {
+	 bottle MAX = new bottle();
+	 MAX.set(MAX); 
+	 return MAX; 
+ }
+ public bottle MIN(bottle MIN) {
+	 
+	 MIN.set(MIN);
+	 return MIN; 
+ }*/
+  public void read() {  
+	 
 	 boolean stop = true; 
 	 while(stop == true) {
 		 stop = false;
@@ -27,180 +37,112 @@ static final int MIN = 0;
 		 else if (pennies < MIN) {
 			 stop = true;
 			 System.out.println("You cannot put a negative number in the bottle silly.\nTry again");
-		 }
-     
+		 }     
 	 }
  }
-
- public void set(int capacity)
- {
-     pennies = capacity;
+ public void set(int value) {
+	 if (pennies >= MAX || pennies < MIN) {
+		  System.out.println("The value is beyond or below the MAX or MN.");
+    	  System.exit(0); 
+	 }
+     pennies = value;
  }
-
- public void set(bottle bottle)
- {
+ public void set(bottle bottle) {
      pennies = bottle.get();
  }
-
- public int get()
- {
+ public int get() {
      return pennies;
  }
-
-
- public bottle add(int value)
- {
-     bottle bottle = new bottle();
-     if (value + this.pennies >= MAX)
-     {
-    	 boolean enter = true; 
-    	  System.out.println("Sorry! It has reached the max.");
-    	  if( enter == true) {
+ public bottle add(int value) {
+     bottle answer = new bottle();
+     if (value + this.pennies >= MAX || value+this.pennies < MIN){
+    	// boolean enter = true; 
+    	  System.out.println("The value is beyond or below the MAX or MN.");
+    	  System.exit(0); 
+    	 /* if( enter == true) {
     		  enter = false; 
     		  System.out.println("Please enter a smaller number than " + this.pennies);
     		  this.pennies= keyboard.nextInt(); 
-    	  }
+    	  }*/ 
               }
-     bottle.set(this.pennies + value);
-
-
-     return bottle;
+     answer.set(this.pennies + value);
+     return answer;
  }
-
-
- public bottle subtract(int value)
- {
+ public bottle add(bottle bottle) {
+     bottle bottle1 = new bottle();
+     if (bottle.get() + this.pennies >=  MAX|| bottle.get() +  this.pennies < MIN){
+    	  System.out.println("The value is beyond or below the MAX or MN.");
+    	  System.exit(0); 
+     }
+         bottle1.set(this.pennies + bottle.get());
+     return bottle1;
+ }
+ public bottle subtract(int value){
      bottle bottle = new bottle();
-     if (this.pennies - value <= MIN)
+     if (this.pennies - value <MIN || this.pennies - value >= MAX )
      {
-    	  System.out.println("Sorry! It has reached the minimum.");
+    	  System.out.println("The value is beyond or below the MAX or MN.");
+    	  System.exit(0); 
      }
      bottle.set(this.pennies - value);
      return bottle;
  }
-
-
+ public bottle subtract(bottle bottle) {
+     bottle bottle1 = new bottle();
+     if (bottle.get() - this.pennies < MIN ) {
+    	  System.out.println("The value is below the MN.");
+    	  System.exit(0); 
+     }
+     bottle1.set(bottle.get() - this.pennies);
+     return bottle1;
+ }
  public bottle multiply(int value)
  {
      bottle bottle = new bottle();
-     if (this.pennies * value >= MAX){
-    	 System.out.println("Sorry! It has reached the bounds.");
-         bottle.set(this.pennies * value);
+     if (this.pennies * value >= MAX || this.pennies * value < MIN){
+    	  System.out.println("The value is beyond or below the MAX or MN.");
+    	  System.exit(0); 
      }
-    
      bottle.set(this.pennies * value);
- 
      return this;
  }
-
-
- public bottle divide(int value)
- {
-     bottle bottle = new bottle();
-
-     if (this.pennies > 0 && value > 0)
-     {
-         bottle.set(this.pennies / value);
-     }
-     else
-     {
-         System.out.println("Sorry! It has reached the bounds.");
-     }
-
-     return bottle;
- }
-
-
- public bottle add(bottle bottle)
- {
-     bottle bot = new bottle();
-     if (bottle.get() + this.pennies <= MAX)
-     {
-
-         bot.set(this.pennies + bottle.get());
-     }
-     else
-     {
-         System.out.println("Sorry! It has reached the max.");
-         
-     }
-
-     return bot;
- }
-
-
- public bottle subtract(bottle bottle)
- {
-     bottle bot = new bottle();
-     if (bottle.get() - this.pennies >= MIN)
-     {
-
-         bot.set(bottle.get() - this.pennies);
-     }
-     else
-     {
-         System.out.println("Sorry! It has reached the min.");
-     }
-
-     return bot;
- }
-
-
- public bottle multiply(bottle bottle)
- {
-     bottle bot = new bottle();
+ public bottle multiply(bottle bottle) {
+     bottle bottle1 = new bottle();
      if ( this.pennies * bottle.get() >=  MAX)
      {
-
-         System.out.println("Whoops thats out of bounce");
-        if(this.pennies > bottle.get()) {
-        	this.pennies = keyboard.nextInt(); 
-        }
-        else if( bottle.get()> this.pennies) {
-        	int x; 
-        	x = keyboard.nextInt(); 
-        	
-        }
+    	  System.out.println("The value is beyond MAX.");
+    	  System.exit(0); 
      }
-     bot.set(this.pennies * bottle.get());
+     else {
+     bottle1.set(this.pennies * bottle.get());
+     }
+     return bottle1;
+ }
+ public bottle divide(int value) {
+     bottle bottle = new bottle();
+         bottle.set(this.pennies / value);
+     return bottle;
+ }
  
-
-     // return the current Bottle object
-     return bot;
+ public bottle divide(bottle bottle) {
+     bottle bottle1 = new bottle();     
+         bottle1.set(this.pennies / bottle.get());    
+     return bottle1;
  }
-
-
- public bottle divide(bottle bottle)
- {
-     bottle bot = new bottle();
-
-     if (this.pennies > 0 && bottle.get() > 0)
-     {
-         bot.set(this.pennies / bottle.get());
-     }
-     else
-     {
-         System.out.println("Sorry! It has reached the bounds.");
-     }
-
-     return bot;
- }
-
-
- public boolean equals(bottle bottle)
- {
-
+ public boolean equals(bottle bottle) {
      if (this.pennies == bottle.get())
          return true;
-
      return false;
  }
-
-
  public String toString()
  {
-     return String.valueOf(this.pennies);
+     return "" + this.pennies;
  }
+
+ 
+ 
+ 
+ 
 /*
 public  void  read(){
 	
