@@ -13,31 +13,17 @@ static final int  MAX = 500;
      //MIN = 0; 
      keyboard = new Scanner(System.in);
  }
- /*
- public bottle MAX() {
-	 bottle MAX = new bottle();
-	 MAX.set(MAX); 
-	 return MAX; 
- }
- public bottle MIN(bottle MIN) {
-	 
-	 MIN.set(MIN);
-	 return MIN; 
- }*/
+ 
   public void read() {  
 	 
-	 boolean stop = true; 
-	 while(stop == true) {
-		 stop = false;
-		 pennies = keyboard.nextInt();
+	 pennies = keyboard.nextInt();
+	 while(pennies => MAX || pennies < MIN) {
+		
 		 if(pennies >= MAX) {
-			 stop = true;
-			 System.out.println("Whoops that number cannot fit in the bottle.\nEnter another number for the bottle");
+			 System.out.println("The value is beyond or bellow the MAX and Min" + pennies + "\nPlease enter another number again");
+			 pennies = keyboard.nextInt(); 
 		 }
-		 else if (pennies < MIN) {
-			 stop = true;
-			 System.out.println("You cannot put a negative number in the bottle silly.\nTry again");
-		 }     
+		     
 	 }
  }
  public void set(int value) {
