@@ -1,4 +1,4 @@
-	package bottle;
+
 import java.util.Scanner; 
 import java.util.prefs.*;
 public class bottle {
@@ -16,9 +16,8 @@ static final int  MAX = 500;
  
   public void read() {  
 	 
-	 pennies = keyboard.nextInt();
-	 while(pennies => MAX || pennies < MIN) {
-		
+	 pennies = keyboard.nextInt(); 
+	 while(pennies >= MAX || pennies < MIN) {
 		 if(pennies >= MAX) {
 			 System.out.println("The value is beyond or bellow the MAX and Min" + pennies + "\nPlease enter another number again");
 			 pennies = keyboard.nextInt(); 
@@ -45,11 +44,6 @@ static final int  MAX = 500;
     	// boolean enter = true; 
     	  System.out.println("The value is beyond or below the MAX or MN.");
     	  System.exit(0); 
-    	 /* if( enter == true) {
-    		  enter = false; 
-    		  System.out.println("Please enter a smaller number than " + this.pennies);
-    		  this.pennies= keyboard.nextInt(); 
-    	  }*/ 
               }
      answer.set(this.pennies + value);
      return answer;
