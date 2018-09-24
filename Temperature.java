@@ -62,7 +62,7 @@ Program what must include
 - 
  */
 public class Temperature {
-	private double Temperature = 0; 
+	private double Temperature; 
 	private String scale; 
 	static final double absoluteFahrenheit = -456.67; 
 	static final double absoluteKelvin = 0; 
@@ -79,48 +79,26 @@ public class Temperature {
 		}
 			}//End read 
 		Temperature() {
-		this.Temperature = 38; 
-		this.scale= "C"; 
-
+			this.Temperature = 0;
+			this.scale = "" ; 
 		
 	}//default constractore 
-		Temperature(int Temperature, String scale){
-			this.Temperature = Temperature; 
-			this.scale = scale; 
+		Temperature(double temperature, String scale1){
+			this.Temperature = temperature; 
+			this.scale = scale1; 
 			
 		}
-	private void set(double value) {	
-		switch(scale) {
-		case "F":
-			if(Temperature < absoluteFahrenheit ){
-				System.out.println("That's below the absolute zero of Fahrenheit");
-				System.exit(0); 
-		}
-			break; 
-		case "C": 
-			if(scale.equalsIgnoreCase("C") && Temperature < absoluteCelsius) {
-				System.out.println("That's below the absolute zero of Celsius"); 
-				System.exit(0); 
-			}
-		break; 
-		case "K": 
-			if(scale.equalsIgnoreCase("K")&& Temperature < absoluteKelvin) {
-				System.out.println("That's below the absolute zero of Kelvin");
-				System.exit(0);
-			}	
-			Temperature = value; 
+	private void set(Temperature value) {	
+		Temperature  = value.get(); 
 		
-		default: 
-			System.out.println("That's not a valid type of temperature.");
-			System.exit(0);
-			
-		}//End Switch
 		
-		Temperature = value; 
 	}//End Set
+	private void set(double value) {
+		Temperature= value; 
+	}
 	public double get() {
-		Double temperature = (double)Temperature; 
-		return temperature; 
+	 
+		return this.Temperature; 
 	}
 	public Temperature add(Temperature value) {
 		Temperature answer = new Temperature(); 
@@ -128,13 +106,13 @@ public class Temperature {
 		switch(scale) {
 		case"K": 	
 		
-			answer.set( temp1.get() + this.Temperature); 
+			answer = (value.toCelsius()); 
 			break; 
 		case"C":
 			answer.set(temp1.get() + this.Temperature);
 			break; 
 		case"F": 
-			answer.set(temp1.get() + this.Temperature);
+			answer.set(value.toFahrenheit());
 		default: 
 			System.out.println("Thats not a valid type of temperature.");
 			System.exit(0);
@@ -146,10 +124,13 @@ public class Temperature {
 		Temperature temp1 = new Temperature(); 
 		switch(scale){
 		case"K": 
+			answer.set(value.get()- this.Temperature );
 			break; 
 		case"C": 
+			answer.set(value.get()- this.Temperature);
 			break; 
 		case"F": 
+			answer.set(value.get()- this.Temperature); 
 			break; 
 		default: 
 			System.out.println("That's not a valid type of temoerature");
@@ -165,20 +146,19 @@ public class Temperature {
 	}//End Subtract
 	public Temperature multiply(Temperature value) {
 		Temperature answer= new Temperature(); 
-		if(scale.equals("C")) {
-		answer.set(this.Temperature * value.get());
-		} 
 		switch(scale) {
 			case"K": 
-			
+				answer.set(value.get() *this.Temperature);
 				break; 
 			case"C": 
-				
+				answer.set(value.get()* this.Temperature);
 				break; 
 			case"F": 
-				
+				answer.set(value.get() *this.Temperature);
 				break; 
 			default: 
+				System.out.println("That's not a valid type of temoerature");
+				System.exit(0);
 		}
 		return answer; 
 	}//End Multiply 
@@ -186,12 +166,17 @@ public class Temperature {
 		Temperature answer = new Temperature(); 
 		switch(scale) {
 		case"K": 
+			answer.set((value +  this.Temperature)/2); 
 			break;
 		case"C": 
+			answer.set((value + this.Temperature)/2);
 			break; 
 		case"F": 
+			answer.set((value + this.Temperature)/2);
 			break;
 		default: 
+			System.out.println("That's not a valid type of temoerature");
+			System.exit(0);
 		}
 		
 		return answer; 
@@ -204,64 +189,68 @@ public class Temperature {
 		boolean answer = true; 
 		return answer; 
 	}//End greaterThan
-	public double toKelvin() {
+	public Temperature toKelvin() {
+		Temperature answer = new Temperature(); 
+		Temperature temp1 = new Temperature(); 
+		
 		//K to C: K - 273.15 
 		//K to F: (K - 273.15) * 9/5 + 32 
 		double kelvin = 273.15; 
-		double answer = 0; 
-		switch(scale) {
+		//double answer; 
+		switch(this.scale) {
 		case "C": 
-			answer = (this.Temperature - kelvin); 
+			answer.set(temp1.get() - kelvin); 
 			break; 
 		case "F": 
-			answer= (this.Temperature - kelvin) * (9/5) + 32; 
+			answer.set((temp1.get() - kelvin) * (9/5) + 32); 
 			break; 
 		case "K": 
-			answer = this.Temperature; 
+			answer.set (temp1.get()); 
 			break; 
 			default: 
-				answer = this.Temperature; 
+				answer.set(temp1.get()); 
 		
 		}
 		
 		return answer; 
 	}//End toKelvin 
 
-	public double toCelsius() {
+	public Temperature toCelsius() {
 		//C to K: C + 273.15 
 		//C to F: (C * 9/5) + 32 
-		double answer = 0; 
+		Temperature answer = new Temperature(); 
 		switch(scale) {
 		case "K": 
-			answer = (this.Temperature + 273.15); 
+			answer.set(this.Temperature + 273.15);
 			break; 
 		case "F": 
-			answer = (this.Temperature * (9/5)) + 32;
+			answer.set((this.Temperature - 32) * 5/9);
 			break; 
 		case"C" : 
-			answer = this.Temperature; 
+			answer.set(this.Temperature); 
 			break; 
 			default: 
 			
 		}
+		System.out.println("The answer is equals to " + answer);
 		return answer; 
 	}//End toCelsius
-	public double toFahrenheit() {
+	public Temperature toFahrenheit() {
 		double celcius =  32 ;
 		double fraction = 5/9;
 		
 		//F to C: (F - 32) * 5/9 
 		//F to K: (F - 32) * 5/9 + 273.15 
-		double answer = 0 ; 
+		Temperature answer = new Temperature();  
 		switch(scale) {
 		case "C": 
-			 answer =( (this.Temperature - celcius)*(fraction)); 
+			 answer.set( (this.Temperature - celcius)*(fraction)); 
 			break; 
 		case "K": 
-			answer = ((this.Temperature - celcius)*(fraction) + 273.15);
+			answer.set((this.Temperature - celcius)*(fraction) + 273.15);
 			break; 
 		case "F": 
-			answer = this.Temperature; 
+			answer.set(this.Temperature); 
 			break;
 			default: 
 				System.out.println("That's not a valid type of Temperature"); 
@@ -269,18 +258,10 @@ public class Temperature {
 		}
 		return answer; 
 	}//ToFahrenheit
-	public void writeOut(){
-		switch(scale) {
-		case "F": System.out.println(toFahrenheit());
-		break; 
-		case "C": System.out.println(toCelsius());
-		break; 
-		case "K": System.out.println(toKelvin());
-		}
-	}
+	
 	public String toString() {
 		
-		return ""; 
+		return "" + this.Temperature; 
 	}//End toString 
 }//End of Class
 
