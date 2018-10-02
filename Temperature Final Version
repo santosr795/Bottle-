@@ -204,13 +204,38 @@ public class Temperature {
 		return answer; 
 	}//End Divide 
 	public boolean equals(Temperature temperature) {
-		boolean answer = true;
+		boolean answer = false;
+		Temperature checker = new Temperature(); 
+		checker.set(this.temp);
+		switch(scale) {
+		case"K": 
+			if(checker.equals(Temp.toKelvin())) {
+				answer = true;
+			}
+			break;
+		case"C":
+			if(checker == Temp.toCelsius()) {
+				answer = true;
+			}
+			break; 
+		case "F": 
+			if(checker.equals(Temp.toFahrenheit())) {
+				answer = true;
+			}
+			break;
+			default: 
+				System.out.println("That's not a valid type of temoerature");
+				System.exit(0);
+		}
+		
+		return answer;
+		/*boolean answer = true;
 		Temperature checker = new Temperature(); 
 		checker.set(this.temp);
 		if(checker == temperature) {
 			answer = false; 
 			return answer;
-		}
+		}*/
 		return answer;
 	}//End equals
 	public boolean greaterThan(Temperature temperature) {
